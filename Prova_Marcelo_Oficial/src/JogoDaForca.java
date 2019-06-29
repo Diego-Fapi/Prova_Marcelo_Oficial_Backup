@@ -6,26 +6,33 @@ import java.util.Scanner;
 public class JogoDaForca{
 
     public static void main(String[] args) {
+    	Scanner ler = new Scanner(System.in);
     	Jogador jogador = new Jogador();
-    	jogador.inserirNome();
+    	Nivel nivel = new Nivel();
+    	Resultado resultado = new Resultado();
+    	String palavraRodada;
+    	String letrasUtilizadas = "";
+    	char letra;
+        boolean ganhou = false;
+        int tentativa;
     	
-        Scanner ler = new Scanner(System.in);
-        String palavraRodada;
-        	System.out.println("Palavra da rodada:");
-        	palavraRodada = ler.nextLine().toUpperCase();
+    	
         
         
-        //lista de palavras
-        String[] palavras = {palavraRodada};
-
-        //quantidade de palavras
-        //int quantPalavras = palavras.length; // length: pega o tamanho do vetor
-
-        //palavra sorteada
-        String sorteada = (palavras[0]);
-
         
-        char[] acertos = new char[sorteada.length()];// controlar os acertos do usuário... Cada letra im acerto
+        
+        
+        jogador.inserirNome();
+        
+        
+        System.out.println("Palavra da rodada:");
+       	palavraRodada = ler.nextLine().toUpperCase(); //Pega a palavra da rodada e coloca ela em caixa alta
+        
+        String[] palavras = {palavraRodada}; //lista de palavras
+        
+        String sorteada = (palavras[0]); //Pega a palavra que o jogador digitou no indice zero
+
+        char[] acertos = new char[sorteada.length()];// controlar os acertos do usuário... Cada letra um acerto
         //B A N A N A -> palavra
         //0 1 2 3 4 5 -> posição
         //digitei A
@@ -37,42 +44,18 @@ public class JogoDaForca{
             }
         }
 
-        String letrasUtilizadas = "";
+        
 
-        char letra;
-        boolean ganhou = false;
-        int tentativa;
-        
-        
-        
-        Nivel nivel = new Nivel();
         tentativa = nivel.escolheNivel();
-        
         System.out.print(tentativa);
         
 		
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         for (int i = 0; i < sorteada.length(); i++) {
             if(acertos[i] == 1){ //é um hifen
                 System.out.println(" - ");
             }else{
                 System.out.print(" _ ");
-            }    
+            	}    
             }
 
                 
@@ -82,32 +65,31 @@ public class JogoDaForca{
                             + "\nLetras utilizadas: " + letrasUtilizadas
                             + "\nQual letra? (Você pode tentar a palavra)");
                     
-                    
-                    String digitado = ler.next().toUpperCase();
+                    String digitado = ler.next().toUpperCase(); //Aqui é caso o jogador queira digitar a palavra inteira
                     
                     if(digitado.length() > 1){
-                        if(digitado.equals(sorteada)){
-                            ganhou = true;
+                        if(digitado.equals(sorteada)){ //Caso a palavra digitada seja igual a palavra da rodada, 
+                            ganhou = true; //Eu ganho o jogo
                             break;
                         }else{
-                            tentativa = 0;
+                            tentativa = 0; //Senão eu perco
                             break;
                         }
                     } else{
                     
                     
                     letra = digitado.charAt(0); //pega a primeira letra ---- É aqui que eu recebo as letras que eu digito
-                    letrasUtilizadas += " " + letra;
+                    letrasUtilizadas += " " + letra; // Aqui mostra as letras já utilizadas
 
-                    boolean perdeTentativa = true;
+                    boolean perdeTentativa = true; //Começa como se eu estivesse perdido uma rodada
                     for (int i = 0; i < sorteada.length(); i++) {
                         if (letra == sorteada.charAt(i)) { //charAt: ele pega a letra na posição i
                             acertos[i] = 1;
-                            perdeTentativa = false;
+                            perdeTentativa = false; //Acertei a letra, então não perdi nenhuma tentativa
                         }
                     }
 
-                    if (perdeTentativa) { //se perdeTentativa for verdadeiro
+                    if (perdeTentativa) { //se perdeTentativa for verdadeiro, ou seja, errei uma letra
                         tentativa--; //executa só se o usuário não acertar a letra na rodada
                     }
 
@@ -122,11 +104,13 @@ public class JogoDaForca{
                             System.out.print(" " + sorteada.charAt(i) + "");
                         }
                     }
-                    }
+                  }
                     
                     System.out.print("\n");
                 }while (!ganhou && tentativa > 0);
-                Resultado resultado = new Resultado();
-                System.out.println(resultado.condicaoResultado(tentativa,sorteada));
+                
+                
+                
+                System.out.println(resultado.condicaoResultado(tentativa,sorteada)); //Mostra se eu ganhei eu perdi
         }
 }
