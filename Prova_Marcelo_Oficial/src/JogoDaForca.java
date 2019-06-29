@@ -10,13 +10,13 @@ public class JogoDaForca{
     	jogador.inserirNome();
     	
         Scanner ler = new Scanner(System.in);
-        String teste;
+        String palavraRodada;
         System.out.println("Palavra da rodada:");
-        teste = ler.nextLine().toUpperCase();
+        palavraRodada = ler.nextLine().toUpperCase();
         
         
         //lista de palavras
-        String[] palavras = {teste};
+        String[] palavras = {palavraRodada};
 
         //quantidade de palavras
         int quantPalavras = palavras.length; // length: pega o tamanho do vetor
