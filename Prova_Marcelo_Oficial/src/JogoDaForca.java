@@ -5,6 +5,8 @@ import java.util.Scanner;
 
 public class JogoDaForca{
 
+	
+	
     public static void main(String[] args) {
     	Scanner ler = new Scanner(System.in);
     	Jogador jogador = new Jogador();
@@ -17,8 +19,6 @@ public class JogoDaForca{
         int tentativa;
     	
     	
-        
-        
         
         
         
@@ -67,6 +67,11 @@ public class JogoDaForca{
                     
                     String digitado = ler.next().toUpperCase(); //Aqui é caso o jogador queira digitar a palavra inteira
                     
+                    if(digitado.equals("0")) {
+                    	System.out.println("Sabe o que falta em você? Coragem para continuar o jogo");
+                    	System.exit(0);
+                    }
+                    
                     if(digitado.length() > 1){
                         if(digitado.equals(sorteada)){ //Caso a palavra digitada seja igual a palavra da rodada, 
                             ganhou = true; //Eu ganho o jogo
@@ -79,7 +84,10 @@ public class JogoDaForca{
                     
                     
                     letra = digitado.charAt(0); //pega a primeira letra ---- É aqui que eu recebo as letras que eu digito
+                    	
                     letrasUtilizadas += " " + letra; // Aqui mostra as letras já utilizadas
+                    
+                    
 
                     boolean perdeTentativa = true; //Começa como se eu estivesse perdido uma rodada
                     for (int i = 0; i < sorteada.length(); i++) {
