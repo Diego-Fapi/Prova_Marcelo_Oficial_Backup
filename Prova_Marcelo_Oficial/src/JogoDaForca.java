@@ -11,15 +11,15 @@ public class JogoDaForca{
     	
         Scanner ler = new Scanner(System.in);
         String palavraRodada;
-        System.out.println("Palavra da rodada:");
-        palavraRodada = ler.nextLine().toUpperCase();
+        	System.out.println("Palavra da rodada:");
+        	palavraRodada = ler.nextLine().toUpperCase();
         
         
         //lista de palavras
         String[] palavras = {palavraRodada};
 
         //quantidade de palavras
-        int quantPalavras = palavras.length; // length: pega o tamanho do vetor
+        //int quantPalavras = palavras.length; // length: pega o tamanho do vetor
 
         //palavra sorteada
         String sorteada = (palavras[0]);
@@ -96,7 +96,7 @@ public class JogoDaForca{
                     } else{
                     
                     
-                    letra = digitado.charAt(0); //pega a primeira letra
+                    letra = digitado.charAt(0); //pega a primeira letra ---- É aqui que eu recebo as letras que eu digito
                     letrasUtilizadas += " " + letra;
 
                     boolean perdeTentativa = true;

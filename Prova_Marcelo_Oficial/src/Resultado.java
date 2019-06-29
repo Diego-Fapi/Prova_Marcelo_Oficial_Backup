@@ -3,7 +3,7 @@ public class Resultado {
 	public String condicaoResultado(int tentativa, String sorteada) {
 		
         
-		String mensagem1 = "\n\t *** O desgraçado é um gênio. Parabêns ***";
+		String mensagem1 = "\n\t *** O desgraçado é um gênio. Parabêns *** \n\t\t *** Sobraram " + tentativa + " tentativas ***";
 		String mensagem2 = "\n\t *** Errrooouuuuuu ***"
 							+ "\n\t A palavra era: " + sorteada;
 		
@@ -12,5 +12,5 @@ public class Resultado {
         } else{
         	return mensagem2;
         }
-    	}
-	}
+    }
+}
