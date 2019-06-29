@@ -3,9 +3,12 @@ import java.util.Scanner;
 
 
 
-public class JogoDaForca {
+public class JogoDaForca{
 
     public static void main(String[] args) {
+    	Jogador jogador = new Jogador();
+    	jogador.inserirNome();
+    	
         Scanner ler = new Scanner(System.in);
         String teste;
         System.out.println("Palavra da rodada:");
@@ -38,9 +41,18 @@ public class JogoDaForca {
 
         char letra;
         boolean ganhou = false;
-
-        int tentativas = sorteada.length();
-
+        int tentativa;
+        
+        
+        
+        Nivel nivel = new Nivel();
+        tentativa = nivel.escolheNivel();
+        
+        System.out.print(tentativa);
+        
+		
+        
+        
         
         
         
@@ -64,9 +76,9 @@ public class JogoDaForca {
             }
 
                 
-                do{ // ! não  não falso = verdadeiro
+                do{
                     System.out.println("\n"
-                            + "Você tem " + tentativas + " tentativas"
+                            + "Você tem " + tentativa + " tentativas"
                             + "\nLetras utilizadas: " + letrasUtilizadas
                             + "\nQual letra? (Você pode tentar a palavra)");
                     
@@ -78,7 +90,7 @@ public class JogoDaForca {
                             ganhou = true;
                             break;
                         }else{
-                            tentativas = 0;
+                            tentativa = 0;
                             break;
                         }
                     } else{
@@ -96,7 +108,7 @@ public class JogoDaForca {
                     }
 
                     if (perdeTentativa) { //se perdeTentativa for verdadeiro
-                        tentativas--; //executa só se o usuário não acertar a letra na rodada
+                        tentativa--; //executa só se o usuário não acertar a letra na rodada
                     }
 
                     System.out.print("\n");
@@ -113,13 +125,8 @@ public class JogoDaForca {
                     }
                     
                     System.out.print("\n");
-                }while (!ganhou && tentativas > 0);
-                
-                if(tentativas != 0){
-                System.out.println("\n\t *** O desgraçado é um gênio. Parabéns ***");
-                } else{
-                System.out.println("\n\t *** Errroooouuu ***");    
-                    System.out.println("\n\t A palavra era: "+ sorteada);
-                }
-            }
+                }while (!ganhou && tentativa > 0);
+                Resultado resultado = new Resultado();
+                System.out.println(resultado.condicaoResultado(tentativa,sorteada));
         }
+}
